@@ -8,19 +8,12 @@ using namespace std;
 
 /*
  * Classe sem organiza os semáforos utilizados pelos trens
- *
+ * verificando as nove regiões críticas (R.C.)
  *
 */
 
 class sem{
-    // sem_t semaforo1;
-    // sem_t semaforo2;
-    // sem_t semaforo3;
-    // sem_t semaforo4;
-    // sem_t semaforo5;
-    // sem_t semaforo6;
-    // sem_t semaforo7;
-    static const int T=7;
+    static const int T=9; // trabalhamos com as 9 R.C.
     sem_t sems[T];
 
     // Valores a serem usados
