@@ -3,6 +3,7 @@
 
 #include <semaphore.h>
 #include "sem.h"
+#include <QDebug>
 #include <QThread>
 
 /*
@@ -17,6 +18,7 @@ class Trem: public QThread{
 public:
     Trem(int x,int y, int ID, sem *&semaforos);  //construtor
     void run();         //função a ser executada pela thread
+    void speed(int);
 
 
 //Cria um sinal
