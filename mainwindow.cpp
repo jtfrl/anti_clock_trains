@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QStyle>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,9 +8,28 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // 1. Torna o label 100% transparente para cliques ANTES de tudo
+    ui->label_sliderM->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+
+    // 2. Define o slider como pai e exibe
+    ui->label_sliderM->setParent(ui->horizontalSlider_M);
+    ui->label_sliderM->show();
+    ui->label_sliderM->raise();
+
+    // 3. Conecta o sinal do slider
+    connect(ui->horizontalSlider_M, &QSlider::valueChanged, this, &MainWindow::on_horizontalSlider_M_valueChanged);
+
+    // 4. Posiciona inicialmente
+    on_horizontalSlider_M_valueChanged(ui->horizontalSlider_M->value());
+
+
     //Cria o trem com seu (ID, posição X, posição Y)
-    trem1 = new Trem(1,60,30);
-    trem2 = new Trem(2,330,30);
+    trem1 = new Trem(1,200,50);
+    trem2 = new Trem(2,200,180);
+    trem3 = new Trem(3,470,180);
+    trem4 = new Trem(4,60,320);
+    trem5 = new Trem(5,330,320);
+    trem6 = new Trem(6,600,320);
 
     /*
      * Conecta o sinal UPDATEGUI à função UPDATEINTERFACE.
@@ -20,7 +40,10 @@ MainWindow::MainWindow(QWidget *parent) :
      */
     connect(trem1,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
     connect(trem2,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
-
+    connect(trem3,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
+    connect(trem4,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
+    connect(trem5,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
+    connect(trem6,SIGNAL(updateGUI(int,int,int)),SLOT(updateInterface(int,int,int)));
 
 
 }
@@ -33,6 +56,18 @@ void MainWindow::updateInterface(int id, int x, int y){
         break;
     case 2: //Atualiza a posição do objeto da tela (quadrado) que representa o trem2
         ui->label_trem2->setGeometry(x,y,21,17);
+        break;
+    case 3: //Atualiza a posição do objeto da tela (quadrado) que representa o trem3
+        ui->label_trem3->setGeometry(x,y,21,17);
+        break;
+    case 4: //Atualiza a posição do objeto da tela (quadrado) que representa o trem4
+        ui->label_trem4->setGeometry(x,y,21,17);
+        break;
+    case 5: //Atualiza a posição do objeto da tela (quadrado) que representa o trem5
+        ui->label_trem5->setGeometry(x,y,21,17);
+        break;
+    case 6: //Atualiza a posição do objeto da tela (quadrado) que representa o trem6
+        ui->label_trem6->setGeometry(x,y,21,17);
         break;
     default:
         break;
@@ -51,6 +86,10 @@ void MainWindow::on_pushButton_clicked()
 {
     trem1->start();
     trem2->start();
+    trem3->start();
+    trem4->start();
+    trem5->start();
+    trem6->start();
 }
 
 /*
@@ -60,4 +99,23 @@ void MainWindow::on_pushButton_2_clicked()
 {
     trem1->terminate();
     trem2->terminate();
+    trem3->terminate();
+    trem4->terminate();
+    trem5->terminate();
+    trem6->terminate();
 }
+
+void MainWindow::on_horizontalSlider_M_valueChanged(int value)
+{
+    // Calcula a posição X exata do botão cinza (handle) em pixels
+    int x_do_handle = QStyle::sliderPositionFromValue(
+        ui->horizontalSlider_M->minimum(),
+        ui->horizontalSlider_M->maximum(),
+        value,
+        ui->horizontalSlider_M->width() - ui->label_sliderM->width() // Desconta a largura da letra
+        );
+
+
+    ui->label_sliderM->move(x_do_handle, 0);
+}
+

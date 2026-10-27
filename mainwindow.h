@@ -25,12 +25,20 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_horizontalSlider_valueChanged(int value);
+
+    void on_horizontalSlider_M_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
 
     //Cria os objetos TREM's
     Trem *trem1;
     Trem *trem2;
+    Trem *trem3;
+    Trem *trem4;
+    Trem *trem5;
+    Trem *trem6;
 };
 
 #endif // MAINWINDOW_H
