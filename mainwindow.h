@@ -18,14 +18,21 @@ public:
 
 
 public slots:
-    void updateInterface(int,int,int);
+    void updateInterface(int,int,int); //> atualização de interface
+    void ativarTrens(); //> inicialização do movimento dos trens
 
 private slots:
-    void on_pushButton_clicked();
+    void on_pushButton_clicked(); //> clique inicializa
 
-    void on_pushButton_2_clicked();
+    void on_pushButton_2_clicked(); //> clique termina
 
-    void on_horizontalSlider_valueChanged(int value);
+    // controladores de velocidade para cada trem
+    void t1_on_horizontalSlider_valueChanged(int value);
+    void t2_on_horizontalSlider_valueChanged(int value);
+    void t3_on_horizontalSlider_valueChanged(int value);
+    void t4_on_horizontalSlider_valueChanged(int value);
+    void t5_on_horizontalSlider_valueChanged(int value);
+    void t6_on_horizontalSlider_valueChanged(int value);
 
     void on_horizontalSlider_M_valueChanged(int value);
 

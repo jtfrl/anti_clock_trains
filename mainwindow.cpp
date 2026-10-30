@@ -105,6 +105,38 @@ void MainWindow::on_pushButton_2_clicked()
     trem6->terminate();
 }
 
+// === MODIFICADORES DE VELOCIDADE PARA CADA UM DOS TRENS === 
+// com seis funções dedicadas, o usuário pode livremente
+// ativar um ou múltiplos trens ao mesmo tempo
+
+void MainWindow::t1_on_horizontalSlider_valueChanged(int value){
+    trem1->velocidade(value);
+}
+
+
+void MainWindow::t2_on_horizontalSlider_valueChanged(int value){
+    trem2->velocidade(value);
+}
+
+
+void MainWindow::t3_on_horizontalSlider_valueChanged(int value){
+    trem3->velocidade(value);
+}
+
+
+void MainWindow::t4_on_horizontalSlider_valueChanged(int value){
+    trem4->velocidade(value);
+}
+
+
+void MainWindow::t5_on_horizontalSlider_valueChanged(int value){
+    trem5->velocidade(value);
+}
+
+void MainWindow::t6_on_horizontalSlider_valueChanged(int value){
+    trem6->velocidade(value);
+}
+
 void MainWindow::on_horizontalSlider_M_valueChanged(int value)
 {
     // Calcula a posição X exata do botão cinza (handle) em pixels
