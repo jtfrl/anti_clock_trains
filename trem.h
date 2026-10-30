@@ -15,6 +15,7 @@ class Trem: public QThread{
 public:
     Trem(int,int,int);  //construtor
     void run();         //função a ser executada pela thread
+    void speed(int);    //> atualiza a velocidade de trens
 
 
 //Cria um sinal
