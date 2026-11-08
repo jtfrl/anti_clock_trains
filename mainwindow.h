@@ -19,7 +19,6 @@ public:
 
 public slots:
     void updateInterface(int,int,int); //> atualização de interface
-    void ativarTrens(); //> inicialização do movimento dos trens
 
 private slots:
 
